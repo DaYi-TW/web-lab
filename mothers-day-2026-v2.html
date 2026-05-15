@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>母親節活動洞察報告 2025</title>
+<style>
+  :root {
+    --rose: #E8526A;
+    --rose-light: #FDE8EC;
+    --sage: #3A7D6E;
+    --sage-light: #E6F2EF;
+    --gold: #C8902A;
+    --gold-light: #FDF3E3;
+    --ink: #1A1A2E;
+    --ink-mid: #4A4A6A;
+    --ink-soft: #8A8AAA;
+    --bg: #F7F5F2;
+    --white: #FFFFFF;
+    --border: #E8E4DE;
+    --shadow: 0 4px 24px rgba(26,26,46,0.08);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--ink); }
+
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, var(--rose) 0%, #C0394F 60%, #8B1A2E 100%);
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 C20 10 12 18 12 28 C12 38 30 50 30 50 C30 50 48 38 48 28 C48 18 40 10 30 10Z' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E") repeat;
+    animation: bgFloat 20s linear infinite;
+  }
+  @keyframes bgFloat { from { background-position: 0 0; } to { background-position: 60px 60px; } }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    position: relative;
+  }
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 10px;
+    position: relative;
+  }
+
+  /* ── NAV ── */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,245,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 4px;
+    padding: 10px 24px;
+    overflow-x: auto;
+  }
+  .sticky-nav a {
+    flex-shrink: 0;
+    text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink-mid);
+    padding: 6px 14px;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .sticky-nav a:hover, .sticky-nav a.active {
+    background: var(--rose);
+    color: #fff;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+  .section { margin-bottom: 56px; }
+  .section-title {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 8px;
+  }
+  .section-heading {
+    font-size: 26px; font-weight: 700;
+    color: var(--ink); margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .card-body { padding: 28px; }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .kpi-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+  }
+  .kpi-card.rose::after { background: var(--rose); }
+  .kpi-card.sage::after { background: var(--sage); }
+  .kpi-card.gold::after { background: var(--gold); }
+  .kpi-card.purple::after { background: #7B5EA7; }
+  .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(26,26,46,0.12); }
+  .kpi-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+  .kpi-value { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); line-height: 1; }
+  .kpi-unit { font-size: 18px; font-weight: 600; }
+  .kpi-delta {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px;
+    font-size: 13px; font-weight: 600;
+    color: var(--sage);
+    background: var(--sage-light);
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* ── TOOLTIP ── */
+  .tooltip-container { position: relative; display: inline-block; }
+  .tooltip {
+    visibility: hidden; opacity: 0;
+    position: absolute; z-index: 200;
+    bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: #fff;
+    font-size: 12px; line-height: 1.5;
+    padding: 8px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+  .tooltip::after {
+    content: '';
+    position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--ink);
+  }
+  .tooltip-container:hover .tooltip { visibility: visible; opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">📊 2025 母親節活動分析</div>
+  <h1>母親節活動洞察報告</h1>
+  <p>數據區間：2025/05/09–05/11 ｜ 門市數：22 間 ｜ 製作：奧樂雞數據中心</p>
+</section>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="mainNav">
+  <a href="#kpi" class="active">KPI 摘要</a>
+  <a href="#compare">活動對比</a>
+  <a href="#ranking">門市排行</a>
+  <a href="#quadrant">象限分析</a>
+  <a href="#table">明細表格</a>
+  <a href="#insights">洞察建議</a>
+</nav>
+
+<!-- MAIN -->
+<main class="container">
+
+  <!-- KPI -->
+  <section class="section" id="kpi">
+    <div class="section-title">核心指標</div>
+    <div class="section-heading">本次活動四大亮點</div>
+    <div class="kpi-grid">
+      <div class="kpi-card rose tooltip-container">
+        <div class="tooltip">較去年同期成長 338%</div>
+        <div class="kpi-label">套餐點購量</div>
+        <div class="kpi-value"><span class="counter" data-target="1661" data-suffix="">0</span><span class="kpi-unit"> 份</span></div>
+        <div class="kpi-delta">↑ <span class="counter" data-target="438" data-suffix="%">0</span> YoY</div>
+      </div>
+      <div class="kpi-card sage tooltip-container">
+        <div class="tooltip">較去年同期成長 148%（總銷售額）</div>
+        <div class="kpi-label">套餐銷售額</div>
+        <div class="kpi-value">$<span class="counter" data-target="11" data-suffix="">0</span><span class="kpi-unit">.<span class="counter" data-target="52" data-suffix="">0</span>M</span></div>
+        <div class="kpi-delta">↑ 148% YoY</div>
+      </div>
+      <div class="kpi-card gold tooltip-container">
+        <div class="tooltip">較去年提升 2.92 個百分點</div>
+        <div class="kpi-label">套餐點購比</div>
+        <div class="kpi-value"><span class="counter" data-target="6" data-suffix="">0</span><span class="kpi-unit">.<span class="counter" data-target="54" data-suffix="">0</span>%</span></div>
+        <div class="kpi-delta">↑ 2.92 pp YoY</div>
+      </div>
+      <div class="kpi-card purple tooltip-container">
+        <div class="tooltip">較去年提升 $10/人</div>
+        <div class="kpi-label">平均客單價</div>
+        <div class="kpi-value">$<span class="counter" data-target="454" data-suffix="">0</span></div>
+        <div class="kpi-delta">↑ $<span class="counter" data-target="10" data-suffix="">0</span> YoY</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 活動對比 -->
+  <section class="section" id="compare">
+    <div class="section-title">年度比較</div>
+    <div class="section-heading">2025 vs 2026 活動成效</div>
+    <div class="card">
+      <div class="card-body">
+        <div id="compareChart" style="overflow-x:auto;"></div>
+        <!-- 年度對比分析 -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px;">
+          <div style="background:#FDE8EC;border-radius:12px;padding:14px 16px;">
+            <div style="font-size:11px;font-weight:700;color:#C0394F;margin-bottom:4px;">套餐點購量</div>
+            <div style="font-size:22px;font-weight:800;color:#E8526A;">+338%</div>
+            <div style="font-size:12px;color:#A0394F;margin-top:2px;">403 份 → 1,763 份</div>
+            <div style="font-size:11px;color:#C06070;margin-top:6px;line-height:1.5;">活動聲量與套餐設計雙重優化，帶動整體參與量大幅躍升</div>
+          </div>
+          <div style="background:#E6F2EF;border-radius:12px;padding:14px 16px;">
+            <div style="font-size:11px;font-weight:700;color:#2A6659;margin-bottom:4px;">總銷售額</div>
+            <div style="font-size:22px;font-weight:800;color:#3A7D6E;">+148%</div>
+            <div style="font-size:12px;color:#2A6659;margin-top:2px;">$142萬 → $352萬</div>
+            <div style="font-size:11px;color:#3A7060;margin-top:6px;line-height:1.5;">22 間門市全線貢獻，台中廣三 SOGO 單店銷售額達 $91.3 萬最高</div>
+          </div>
+          <div style="background:#FDF3E3;border-radius:12px;padding:14px 16px;">
+            <div style="font-size:11px;font-weight:700;color:#A0721A;margin-bottom:4px;">套餐點購比</div>
+            <div style="font-size:22px;font-weight:800;color:#C8902A;">+2.92pp</div>
+            <div style="font-size:12px;color:#A0721A;margin-top:2px;">3.62% → 6.54%</div>
+            <div style="font-size:11px;color:#B08030;margin-top:6px;line-height:1.5;">轉換率近乎翻倍，現場推廣執行力顯著提升</div>
+          </div>
+          <div style="background:#F0EEF8;border-radius:12px;padding:14px 16px;">
+            <div style="font-size:11px;font-weight:700;color:#5A4A8A;margin-bottom:4px;">平均客單價</div>
+            <div style="font-size:22px;font-weight:800;color:#7B5EA7;">+$10</div>
+            <div style="font-size:12px;color:#5A4A8A;margin-top:2px;">$444 → $454</div>
+            <div style="font-size:11px;color:#6A5A9A;margin-top:6px;line-height:1.5;">單價成長幅度有限，下次可設計進階套餐提升 ASP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 門市排行 -->
+  <section class="section" id="ranking">
+    <div class="section-title">門市表現</div>
+    <div class="section-heading">套餐點購比排行 — 互動橫條圖</div>
+    <div class="card">
+      <div class="card-body" style="padding-bottom:12px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center;">
+          <span style="font-size:13px;color:var(--ink-mid);font-weight:500;">篩選分類：</span>
+          <button class="filter-btn active" data-tier="all">全部</button>
+          <button class="filter-btn" data-tier="優秀">🏆 優秀 ≥8%</button>
+          <button class="filter-btn" data-tier="良好">✅ 良好 6–8%</button>
+          <button class="filter-btn" data-tier="一般">📊 一般 4–6%</button>
+          <button class="filter-btn" data-tier="成長潛力">🌱 成長潛力 &lt;4%</button>
+        </div>
+        <div id="barChart"></div>
+      </div>
+    </div>
+  </section>
+
+<style>
+  /* filter btns */
+  .filter-btn {
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 12px; font-weight: 600;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--rose); color: var(--rose); }
+  .filter-btn.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+
+  /* bar chart rows */
+  .bar-row {
+    display: flex; align-items: center;
+    gap: 12px; margin-bottom: 10px;
+    transition: opacity 0.25s, max-height 0.25s;
+    overflow: hidden;
+  }
+  .bar-row.hidden { opacity: 0; max-height: 0; margin-bottom: 0; pointer-events: none; }
+  .bar-row.visible { opacity: 1; max-height: 60px; }
+  .bar-label {
+    min-width: 120px; max-width: 120px;
+    font-size: 12px; font-weight: 600;
+    color: var(--ink-mid);
+    text-align: right;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .bar-track {
+    flex: 1; height: 28px;
+    background: var(--bg);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 6px;
+    width: 0%;
+    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 8px;
+  }
+  .bar-fill span { font-size: 11px; font-weight: 700; color: #fff; white-space: nowrap; }
+  .bar-track .bar-tooltip {
+    display: none;
+    position: absolute; top: 50%; right: calc(100% + 8px);
+    transform: translateY(-50%);
+    background: var(--ink); color: #fff;
+    font-size: 11px; padding: 6px 10px;
+    border-radius: 8px; white-space: nowrap;
+    pointer-events: none; z-index: 100;
+  }
+  .bar-track:hover .bar-tooltip { display: block; }
+  .bar-pct {
+    min-width: 48px;
+    font-size: 13px; font-weight: 700;
+    color: var(--ink);
+  }
+</style>
+
+<script>
+// ── 門市原始數據
+const storeData = [
+  { name: "台北微風南山",  ratio: 11.73, orders: 606446,  guests: 1262, tier: "優秀" },
+  { name: "桃園中正",     ratio: 11.03, orders: 364154,  guests: 725,  tier: "優秀" },
+  { name: "新莊迴龍",     ratio: 10.83, orders: 425839,  guests: 803,  tier: "優秀" },
+  { name: "台南誠品生活",  ratio: 10.47, orders: 410218,  guests: 812,  tier: "優秀" },
+  { name: "台中公益",     ratio: 9.71,  orders: 266720,  guests: 525,  tier: "優秀" },
+  { name: "台中太原崇德",  ratio: 9.58,  orders: 446536,  guests: 804,  tier: "優秀" },
+  { name: "高雄夢時代",   ratio: 8.47,  orders: 900417,  guests: 1900, tier: "優秀" },
+  { name: "台中樂業",     ratio: 7.88,  orders: 133726,  guests: 292,  tier: "良好" },
+  { name: "台南正興",     ratio: 7.68,  orders: 296114,  guests: 560,  tier: "良好" },
+  { name: "桃園藝文町",   ratio: 7.26,  orders: 634826,  guests: 1254, tier: "良好" },
+  { name: "台中廣三SOGO", ratio: 7.03,  orders: 913295,  guests: 1948, tier: "良好" },
+  { name: "環球板車",     ratio: 6.47,  orders: 715232,  guests: 1576, tier: "良好" },
+  { name: "Bellavita",  ratio: 6.43,  orders: 557280,  guests: 1151, tier: "良好" },
+  { name: "台北SOGO復興", ratio: 5.67,  orders: 848515,  guests: 1904, tier: "一般" },
+  { name: "台北微風廣場",  ratio: 5.43,  orders: 478853,  guests: 995,  tier: "一般" },
+  { name: "高雄義享",     ratio: 5.40,  orders: 711649,  guests: 1594, tier: "一般" },
+  { name: "台北誠品松菸",  ratio: 5.01,  orders: 789562,  guests: 1837, tier: "一般" },
+  { name: "台中審計",     ratio: 4.54,  orders: 428316,  guests: 1145, tier: "一般" },
+  { name: "天母SOGO",    ratio: 4.21,  orders: 458326,  guests: 1211, tier: "一般" },
+  { name: "台北西門",     ratio: 2.50,  orders: 351117,  guests: 1082, tier: "成長潛力" },
+  { name: "台北中山藏藝所",ratio: 2.17,  orders: 236321,  guests: 691,  tier: "成長潛力" },
+  { name: "台北永康",     ratio: 1.29,  orders: 550341,  guests: 1322, tier: "成長潛力" },
+];
+const tierColors = { "優秀":"#E8526A", "良好":"#3A7D6E", "一般":"#C8902A", "成長潛力":"#8A8AAA" };
+const maxRatio = Math.max(...storeData.map(d => d.ratio));
+
+function renderBars(filterTier) {
+  const chart = document.getElementById('barChart');
+  chart.innerHTML = '';
+  storeData.forEach((d, i) => {
+    const hidden = filterTier !== 'all' && d.tier !== filterTier;
+    const row = document.createElement('div');
+    row.className = 'bar-row ' + (hidden ? 'hidden' : 'visible');
+    row.dataset.tier = d.tier;
+    const pct = (d.ratio / maxRatio * 100).toFixed(1);
+    row.innerHTML = `
+      <div class="bar-label" title="${d.name}">${d.name}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="background:${tierColors[d.tier]};width:0%" data-w="${pct}">
+          <span>${d.ratio}%</span>
+        </div>
+        <div class="bar-tooltip">
+          ${d.name}<br>點購比：${d.ratio}%<br>來客數：${d.guests.toLocaleString()} 人<br>銷售額：$${d.orders.toLocaleString()}<br>分類：${d.tier}
+        </div>
+      </div>
+      <div class="bar-pct">${d.ratio}%</div>`;
+    chart.appendChild(row);
+  });
+  // Animate bars after render
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.bar-fill').forEach((el, i) => {
+      setTimeout(() => { el.style.width = el.dataset.w + '%'; }, i * 30);
+    });
+  });
+}
+renderBars('all');
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tier = btn.dataset.tier;
+    document.querySelectorAll('.bar-row').forEach(row => {
+      if (tier === 'all' || row.dataset.tier === tier) {
+        row.classList.remove('hidden'); row.classList.add('visible');
+      } else {
+        row.classList.remove('visible'); row.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// ── 活動對比 SVG Chart
+(function renderCompare(){
+  const data = [
+    { label:"套餐點購量", y24:403, y25:1763, unit:"份", color:"#E8526A", label24:"2025", label25:"2026" },
+    { label:"銷售額(萬)",  y24:142, y25:352,  unit:"萬", color:"#3A7D6E", label24:"2025", label25:"2026" },
+    { label:"點購比(%)",   y24:3.62, y25:6.54, unit:"%", color:"#C8902A", label24:"2025", label25:"2026" },
+    { label:"客單價(百)",  y24:19.8, y25:19.9, unit:"百", color:"#7B5EA7", label24:"2025", label25:"2026" },
+  ];
+  const W=800, H=260, pad={l:60,r:20,t:20,b:40}, gw=W-pad.l-pad.r, gh=H-pad.t-pad.b;
+  const bW=gw/data.length, bPad=12, bW2=(bW-bPad*3)/2;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;overflow:visible" id="cmpSvg">`;
+  // grid
+  [0,0.25,0.5,0.75,1].forEach(t=>{
+    const y=pad.t+gh*(1-t);
+    svg+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" stroke="#E8E4DE" stroke-width="1"/>`;
+    svg+=`<text x="${pad.l-6}" y="${y+4}" text-anchor="end" font-size="10" fill="#8A8AAA">${(t*100).toFixed(0)}%</text>`;
+  });
+  data.forEach((d,i)=>{
+    const maxVal=d.y25*1.15;
+    const h24=gh*(d.y24/maxVal), h25=gh*(d.y25/maxVal);
+    const x=pad.l+i*bW+bPad;
+    const y24=pad.t+gh-h24, y25=pad.t+gh-h25;
+    const gid=`grad${i}`;
+    svg+=`<defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${d.color}" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="${d.color}" stop-opacity="0.4"/>
+    </linearGradient></defs>`;
+    // 2024 bar
+    svg+=`<rect class="cmp-bar" x="${x}" y="${H-pad.b}" width="${bW2}" height="0"
+      data-y="${y24}" data-h="${h24}" rx="4"
+      fill="rgba(138,138,170,0.35)" stroke="#C0BDD8" stroke-width="1">
+      <title>2025 ${d.label}：${d.y24}${d.unit}</title></rect>`;
+    // 2026 bar
+    svg+=`<rect class="cmp-bar" x="${x+bW2+bPad}" y="${H-pad.b}" width="${bW2}" height="0"
+      data-y="${y25}" data-h="${h25}" rx="4"
+      fill="url(#${gid})">
+      <title>2026 ${d.label}：${d.y25}${d.unit}</title></rect>`;
+    // labels
+    svg+=`<text x="${x+bW2/2}" y="${H-pad.b+14}" text-anchor="middle" font-size="9" fill="#8A8AAA">${d.label24||'24'}</text>`;
+    svg+=`<text x="${x+bW2+bPad+bW2/2}" y="${H-pad.b+14}" text-anchor="middle" font-size="9" fill="${d.color}" font-weight="700">${d.label25||'25'}</text>`;
+    svg+=`<text x="${x+bW/2-bPad/2}" y="${H-pad.b+26}" text-anchor="middle" font-size="10" fill="#4A4A6A" font-weight="600">${d.label}</text>`;
+  });
+  svg+=`</svg>`;
+  document.getElementById('compareChart').innerHTML=svg;
+  // animate
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.cmp-bar').forEach((el,i)=>{
+      setTimeout(()=>{
+        const y=parseFloat(el.dataset.y), h=parseFloat(el.dataset.h);
+        el.setAttribute('y', y);
+        el.setAttribute('height', h);
+        el.style.transition='y 0.7s ease, height 0.7s ease';
+      },i*60);
+    });
+  });
+})();
+</script>
+
+  <!-- 象限圖 -->
+  <section class="section" id="quadrant">
+    <div class="section-title">策略分析</div>
+    <div class="section-heading">門市象限矩陣 — 滑鼠移上查看詳情</div>
+    <div class="card">
+      <div class="card-body">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+          <span style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#E8526A">
+            <span style="width:12px;height:12px;border-radius:50%;background:#E8526A;display:inline-block;"></span>明星門市（高客流 × 高點購比）
+          </span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#C8902A">
+            <span style="width:12px;height:12px;border-radius:50%;background:#C8902A;display:inline-block;"></span>精準推廣（低客流 × 高點購比）
+          </span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#3A7D6E">
+            <span style="width:12px;height:12px;border-radius:50%;background:#3A7D6E;display:inline-block;"></span>高流量潛力（高客流 × 低點購比）
+          </span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#8A8AAA">
+            <span style="width:12px;height:12px;border-radius:50%;background:#8A8AAA;display:inline-block;"></span>待提升（低客流 × 低點購比）
+          </span>
+        </div>
+        <div id="quadrantChart" style="position:relative;"></div>
+        <div style="text-align:center;margin-top:8px;font-size:11px;color:var(--ink-soft);">
+          X軸：來客數 ｜ Y軸：套餐點購比 ｜ 泡泡大小：銷售額
+        </div>
+      </div>
+    </div>
+
+    <!-- 象限說明卡片 -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px;">
+
+      <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);border-left:5px solid #E8526A;padding:18px 20px;box-shadow:var(--shadow);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#E8526A;display:inline-block;flex-shrink:0;"></span>
+          <span style="font-size:13px;font-weight:700;color:#E8526A;">明星門市</span>
+          <span id="cnt-star" style="margin-left:auto;font-size:11px;background:#FDE8EC;color:#C0394F;padding:2px 8px;border-radius:100px;font-weight:600;"></span>
+        </div>
+        <div style="font-size:12px;color:var(--ink-mid);line-height:1.6;">
+          <strong style="color:var(--ink);">高客流 × 高點購比</strong><br>
+          活動旗艦，執行力強、轉換率高。<br>
+          ▶ 策略：樹立標竿、複製 SOP，可作為新活動首發試點。
+        </div>
+      </div>
+
+      <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);border-left:5px solid #C8902A;padding:18px 20px;box-shadow:var(--shadow);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#C8902A;display:inline-block;flex-shrink:0;"></span>
+          <span style="font-size:13px;font-weight:700;color:#C8902A;">精準推廣</span>
+          <span id="cnt-gold" style="margin-left:auto;font-size:11px;background:#FDF3E3;color:#A0721A;padding:2px 8px;border-radius:100px;font-weight:600;"></span>
+        </div>
+        <div style="font-size:12px;color:var(--ink-mid);line-height:1.6;">
+          <strong style="color:var(--ink);">低客流 × 高點購比</strong><br>
+          現有客群忠誠度高，流量是成長瓶頸。<br>
+          ▶ 策略：加強外部引流（社群 / 聯名）擴大觸及。
+        </div>
+      </div>
+
+      <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);border-left:5px solid #3A7D6E;padding:18px 20px;box-shadow:var(--shadow);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#3A7D6E;display:inline-block;flex-shrink:0;"></span>
+          <span style="font-size:13px;font-weight:700;color:#3A7D6E;">高流量潛力</span>
+          <span id="cnt-green" style="margin-left:auto;font-size:11px;background:#E6F2EF;color:#2A6659;padding:2px 8px;border-radius:100px;font-weight:600;"></span>
+        </div>
+        <div style="font-size:12px;color:var(--ink-mid);line-height:1.6;">
+          <strong style="color:var(--ink);">高客流 × 低點購比</strong><br>
+          人潮充沛但轉換率尚待提升，潛力最大。<br>
+          ▶ 策略：優化現場陳列、強化服務話術與推薦機制。
+        </div>
+      </div>
+
+      <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--border);border-left:5px solid #8A8AAA;padding:18px 20px;box-shadow:var(--shadow);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#8A8AAA;display:inline-block;flex-shrink:0;"></span>
+          <span style="font-size:13px;font-weight:700;color:#8A8AAA;">🌱 成長潛力門市</span>
+          <span id="cnt-grey" style="margin-left:auto;font-size:11px;background:#F0EDE8;color:#5A5A7A;padding:2px 8px;border-radius:100px;font-weight:600;"></span>
+        </div>
+        <div style="font-size:12px;color:var(--ink-mid);line-height:1.6;">
+          <strong style="color:var(--ink);">低客流 × 低點購比</strong><br>
+          雙指標均有提升空間，需綜合診斷。<br>
+          ▶ 策略：了解門市商圈特性，制定客製化活動方案。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 明細表格 -->
+  <section class="section" id="table">
+    <div class="section-title">完整數據</div>
+    <div class="section-heading">門市明細 — 可排序 / 搜尋</div>
+    <div class="card">
+      <div class="card-body">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:center;">
+          <input type="text" id="searchBox" placeholder="🔍 搜尋門市名稱…" style="
+            border:1.5px solid var(--border);border-radius:10px;
+            padding:8px 14px;font-size:13px;
+            outline:none;transition:border-color 0.2s;width:200px;
+          ">
+          <div style="font-size:12px;color:var(--ink-soft);">點擊欄位標頭可排序 ↑↓</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th data-col="rank">排名</th>
+                <th data-col="name">門市</th>
+                <th data-col="tier">點購比分級</th>
+                <th data-col="quad">象限策略</th>
+                <th data-col="ratio">點購比</th>
+                <th data-col="guests">來客數</th>
+                <th data-col="orders">銷售額</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+        <div id="tableFooter" style="margin-top:12px;font-size:12px;color:var(--ink-soft);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 洞察建議 -->
+  <section class="section" id="insights">
+    <div class="section-title">洞察與行動</div>
+    <div class="section-heading">本次活動五大發現</div>
+    <div class="insights-grid">
+      <div class="insight-card rose">
+        <div class="insight-icon">🚀</div>
+        <div class="insight-title">點購量三位數成長</div>
+        <div class="insight-body">套餐點購量從 403 份躍升至 1,763 份，成長 <strong>+338%</strong>；點購比從 3.62% → 6.54%（+2.92pp），顯示活動設計與現場執行力同步到位。</div>
+      </div>
+      <div class="insight-card sage">
+        <div class="insight-icon">🏆</div>
+        <div class="insight-title">台北微風南山奪冠</div>
+        <div class="insight-body">點購比 <strong>11.73%</strong> 全線第一，約每 9 位顧客就有 1 位點購套餐；桃園中正（11.03%）、新莊迴龍（10.83%）緊追，北部門市前段班表現亮眼。</div>
+      </div>
+      <div class="insight-card gold">
+        <div class="insight-icon">💰</div>
+        <div class="insight-title">台中廣三銷售額稱王</div>
+        <div class="insight-body">台中廣三 SOGO 銷售額 <strong>$913,295</strong> 全線最高，高雄夢時代以 $900,417 緊追，兩店合計貢獻全線約 <strong>51%</strong> 銷售額，中南部大型商圈潛力強勁。</div>
+      </div>
+      <div class="insight-card purple">
+        <div class="insight-icon">📈</div>
+        <div class="insight-title">高流量門市仍有轉換空間</div>
+        <div class="insight-body">台北 SOGO 復興（1,904 人）、高雄義享（1,594 人）、台北誠品松菸（1,837 人）來客充沛，但點購比均低於平均 6.54%，是下次活動優先加強話術推廣的重點門市。</div>
+      </div>
+      <div class="insight-card neutral">
+        <div class="insight-icon">🌱</div>
+        <div class="insight-title">客單價仍有成長空間</div>
+        <div class="insight-body">平均客單 $454，較去年僅 +$10（+2.2%），成長動能來自「量」而非「單價」。建議下次推出雙人進階套餐或加購選項，目標將客單拉升至 $520–$550。</div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:40px 24px;font-size:12px;color:var(--ink-soft);border-top:1px solid var(--border);">
+    奧樂雞數據中心 ｜ 2025 母親節活動洞察報告 ｜ 資料日期 2025/05/09–05/11
+  </footer>
+
+</main>
+
+<style>
+  /* QUADRANT */
+  #quadrantChart svg { width: 100%; }
+  .q-dot { cursor: pointer; transition: r 0.2s, opacity 0.2s; }
+  .q-dot:hover { opacity: 0.85; }
+  .q-tip {
+    position: absolute; pointer-events: none;
+    background: var(--ink); color: #fff;
+    font-size: 12px; line-height: 1.6;
+    padding: 8px 12px; border-radius: 10px;
+    white-space: nowrap; z-index: 200;
+    opacity: 0; transition: opacity 0.15s;
+  }
+
+  /* TABLE */
+  #dataTable {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px;
+  }
+  #dataTable thead th {
+    background: #F0EDE8;
+    color: var(--ink-mid);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left; cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    position: sticky; top: 0;
+    transition: background 0.15s;
+  }
+  #dataTable thead th:hover { background: #E8E4DE; }
+  #dataTable thead th.sort-asc::after { content: ' ↑'; color: var(--rose); }
+  #dataTable thead th.sort-desc::after { content: ' ↓'; color: var(--rose); }
+  #dataTable tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  #dataTable tbody tr:nth-child(even) { background: #FAFAF8; }
+  #dataTable tbody tr:hover { background: var(--rose-light); }
+  #dataTable tbody td { padding: 10px 14px; color: var(--ink); }
+  .tier-badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    padding: 2px 10px; border-radius: 100px;
+  }
+  .tier-優秀 { background: #FDE8EC; color: #C0394F; }
+  .tier-良好 { background: #E6F2EF; color: #2A6659; }
+  .tier-一般 { background: #FDF3E3; color: #A0721A; }
+  .tier-成長潛力 { background: #F0EDE8; color: #5A5A7A; }
+  .quad-star  { background: #FDE8EC; color: #C0394F; }
+  .quad-gold  { background: #FDF3E3; color: #A0721A; }
+  .quad-green { background: #E6F2EF; color: #2A6659; }
+  .quad-grey  { background: #F0EDE8; color: #5A5A7A; }
+
+  /* INSIGHTS */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .insight-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 24px;
+    border-top: 4px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .insight-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(26,26,46,0.12); }
+  .insight-card.rose { border-top-color: var(--rose); }
+  .insight-card.sage { border-top-color: var(--sage); }
+  .insight-card.gold { border-top-color: var(--gold); }
+  .insight-card.purple { border-top-color: #7B5EA7; }
+  .insight-card.neutral { border-top-color: #8A8AAA; }
+  .insight-icon { font-size: 28px; margin-bottom: 12px; }
+  .insight-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .insight-body { font-size: 14px; color: var(--ink-mid); line-height: 1.65; }
+</style>
+
+<script>
+// ── QUADRANT CHART
+(function(){
+  const data = [
+    { name:"台北微風南山",  ratio:11.73, guests:1262, orders:606446,  tier:"優秀" },
+    { name:"桃園中正",     ratio:11.03, guests:725,  orders:364154,  tier:"優秀" },
+    { name:"新莊迴龍",     ratio:10.83, guests:803,  orders:425839,  tier:"優秀" },
+    { name:"台南誠品生活",  ratio:10.47, guests:812,  orders:410218,  tier:"優秀" },
+    { name:"台中公益",     ratio:9.71,  guests:525,  orders:266720,  tier:"優秀" },
+    { name:"台中太原崇德",  ratio:9.58,  guests:804,  orders:446536,  tier:"優秀" },
+    { name:"高雄夢時代",   ratio:8.47,  guests:1900, orders:900417,  tier:"優秀" },
+    { name:"台中樂業",     ratio:7.88,  guests:292,  orders:133726,  tier:"良好" },
+    { name:"台南正興",     ratio:7.68,  guests:560,  orders:296114,  tier:"良好" },
+    { name:"桃園藝文町",   ratio:7.26,  guests:1254, orders:634826,  tier:"良好" },
+    { name:"台中廣三SOGO", ratio:7.03,  guests:1948, orders:913295,  tier:"良好" },
+    { name:"環球板車",     ratio:6.47,  guests:1576, orders:715232,  tier:"良好" },
+    { name:"Bellavita",  ratio:6.43,  guests:1151, orders:557280,  tier:"良好" },
+    { name:"台北SOGO復興", ratio:5.67,  guests:1904, orders:848515,  tier:"一般" },
+    { name:"台北微風廣場",  ratio:5.43,  guests:995,  orders:478853,  tier:"一般" },
+    { name:"高雄義享",     ratio:5.40,  guests:1594, orders:711649,  tier:"一般" },
+    { name:"台北誠品松菸",  ratio:5.01,  guests:1837, orders:789562,  tier:"一般" },
+    { name:"台中審計",     ratio:4.54,  guests:1145, orders:428316,  tier:"一般" },
+    { name:"天母SOGO",    ratio:4.21,  guests:1211, orders:458326,  tier:"一般" },
+    { name:"台北西門",     ratio:2.50,  guests:1082, orders:351117,  tier:"成長潛力" },
+    { name:"台北中山藏藝所",ratio:2.17,  guests:691,  orders:236321,  tier:"成長潛力" },
+    { name:"台北永康",     ratio:1.29,  guests:1322, orders:550341,  tier:"成長潛力" },
+  ];
+  const colors = { "優秀":"#E8526A","良好":"#3A7D6E","一般":"#C8902A","成長潛力":"#8A8AAA" };
+  const W=900, H=420, pad={l:56,r:24,t:24,b:48};
+  const gw=W-pad.l-pad.r, gh=H-pad.t-pad.b;
+  const xs=data.map(d=>d.guests), ys=data.map(d=>d.ratio), os=data.map(d=>d.orders);
+  const xMin=0,xMax=2200,yMin=0,yMax=13;
+  const avgX=1065,avgY=6.54;
+  const maxO=Math.max(...os);
+  const toX=v=>pad.l+(v-xMin)/(xMax-xMin)*gw;
+  const toY=v=>pad.t+gh-(v-yMin)/(yMax-yMin)*gh;
+  const toR=v=>10+Math.sqrt(v/maxO)*26;
+
+  let svg=`<svg viewBox="0 0 ${W} ${H}" id="qSvg" style="width:100%;overflow:visible">`;
+  // quadrant bg
+  const qxPx=toX(avgX), qyPx=toY(avgY);
+  svg+=`<rect x="${pad.l}" y="${pad.t}" width="${qxPx-pad.l}" height="${qyPx-pad.t}" fill="rgba(200,144,42,0.05)" rx="4"/>`;
+  svg+=`<rect x="${qxPx}" y="${pad.t}" width="${W-pad.r-qxPx}" height="${qyPx-pad.t}" fill="rgba(232,82,106,0.05)" rx="4"/>`;
+  svg+=`<rect x="${pad.l}" y="${qyPx}" width="${qxPx-pad.l}" height="${H-pad.b-qyPx}" fill="rgba(138,138,170,0.05)" rx="4"/>`;
+  svg+=`<rect x="${qxPx}" y="${qyPx}" width="${W-pad.r-qxPx}" height="${H-pad.b-qyPx}" fill="rgba(58,125,110,0.05)" rx="4"/>`;
+  // quadrant labels
+  svg+=`<text x="${(pad.l+qxPx)/2}" y="${pad.t+16}" text-anchor="middle" font-size="10" fill="#C8902A" font-weight="600" opacity="0.7">低客流 / 高點購比</text>`;
+  svg+=`<text x="${(qxPx+W-pad.r)/2}" y="${pad.t+16}" text-anchor="middle" font-size="10" fill="#E8526A" font-weight="600" opacity="0.7">明星門市 ⭐</text>`;
+  svg+=`<text x="${(pad.l+qxPx)/2}" y="${H-pad.b-4}" text-anchor="middle" font-size="10" fill="#8A8AAA" font-weight="600" opacity="0.7">待提升</text>`;
+  svg+=`<text x="${(qxPx+W-pad.r)/2}" y="${H-pad.b-4}" text-anchor="middle" font-size="10" fill="#3A7D6E" font-weight="600" opacity="0.7">高流量潛力門市 ✅</text>`;
+  // axes — x到2000，y到12
+  for(let v=200;v<=2000;v+=200){
+    const x=toX(v);
+    svg+=`<line x1="${x}" x2="${x}" y1="${pad.t}" y2="${H-pad.b}" stroke="#E8E4DE" stroke-width="1"/>`;
+    svg+=`<text x="${x}" y="${H-pad.b+14}" text-anchor="middle" font-size="9" fill="#8A8AAA">${v}</text>`;
+  }
+  for(let v=2;v<=12;v+=2){
+    const y=toY(v);
+    svg+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" stroke="#E8E4DE" stroke-width="1"/>`;
+    svg+=`<text x="${pad.l-6}" y="${y+4}" text-anchor="end" font-size="9" fill="#8A8AAA">${v}%</text>`;
+  }
+  // avg lines
+  svg+=`<line x1="${qxPx}" x2="${qxPx}" y1="${pad.t}" y2="${H-pad.b}" stroke="#1A1A2E" stroke-width="1" stroke-dasharray="4 3" opacity="0.25"/>`;
+  svg+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${qyPx}" y2="${qyPx}" stroke="#1A1A2E" stroke-width="1" stroke-dasharray="4 3" opacity="0.25"/>`;
+  // dots + labels
+  data.forEach((d,i)=>{
+    const cx=toX(d.guests), cy=toY(d.ratio), r=toR(d.orders);
+    // color by quadrant
+    let c;
+    if(d.guests >= avgX && d.ratio >= avgY)      c='#E8526A';
+    else if(d.guests < avgX && d.ratio >= avgY)  c='#C8902A';
+    else if(d.guests >= avgX && d.ratio < avgY)  c='#3A7D6E';
+    else                                          c='#8A8AAA';
+    // 縮短店名（去掉前綴避免太擠）
+    const shortName = d.name.replace(/台北|台中|高雄|台南|桃園|新莊|環球|天母/,'').substring(0,4);
+    svg+=`<circle class="q-dot" cx="${cx}" cy="${H-pad.b}" r="${r}"
+      fill="${c}" fill-opacity="0.18" stroke="${c}" stroke-width="1.5"
+      data-name="${d.name}" data-ratio="${d.ratio}" data-guests="${d.guests}"
+      data-orders="${d.orders}" data-tier="${d.tier}"
+      data-cx="${cx}" data-cy="${cy}" data-c="${c}">
+    </circle>`;
+    // 店名文字（初始隱藏，動畫完成後顯示）
+    svg+=`<text class="q-label" x="${cx}" y="${H-pad.b}" text-anchor="middle"
+      dominant-baseline="middle" font-size="9" font-weight="600"
+      fill="${c}" opacity="0"
+      data-cx="${cx}" data-cy="${cy}">
+      ${shortName}
+    </text>`;
+  });
+  svg+=`</svg>`;
+  const container=document.getElementById('quadrantChart');
+  container.innerHTML=svg;
+
+  // animate dots + reveal labels
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.q-dot').forEach((el,i)=>{
+      setTimeout(()=>{
+        el.setAttribute('cy', el.dataset.cy);
+        el.style.transition='cy 0.6s cubic-bezier(0.34,1.56,0.64,1)';
+      }, i*40);
+    });
+    document.querySelectorAll('.q-label').forEach((el,i)=>{
+      setTimeout(()=>{
+        el.setAttribute('y', el.dataset.cy);
+        el.setAttribute('opacity','1');
+        el.style.transition='y 0.6s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s';
+      }, i*40+600);
+    });
+  });
+
+  // tooltip — 用 fixed 定位避免裁切
+  const tip=document.createElement('div');
+  tip.className='q-tip';
+  tip.style.position='fixed';
+  tip.style.pointerEvents='none';
+  tip.style.zIndex='9999';
+  document.body.appendChild(tip);
+  document.querySelectorAll('.q-dot').forEach(el=>{
+    el.addEventListener('mouseenter', e=>{
+      tip.innerHTML=`<strong>${el.dataset.name}</strong><br>點購比：${el.dataset.ratio}%<br>來客：${parseInt(el.dataset.guests).toLocaleString()} 人<br>銷售額：$${parseInt(el.dataset.orders).toLocaleString()}`;
+      tip.style.opacity='1';
+      tip.style.left=(e.clientX+14)+'px';
+      tip.style.top=(e.clientY-10)+'px';
+    });
+    el.addEventListener('mousemove', e=>{
+      tip.style.left=(e.clientX+14)+'px';
+      tip.style.top=(e.clientY-10)+'px';
+    });
+    el.addEventListener('mouseleave',()=>{ tip.style.opacity='0'; });
+  });
+  // 填象限計數
+  let cntStar=0,cntGold=0,cntGreen=0,cntGrey=0;
+  data.forEach(d=>{
+    if(d.guests>=avgX&&d.ratio>=avgY) cntStar++;
+    else if(d.guests<avgX&&d.ratio>=avgY) cntGold++;
+    else if(d.guests>=avgX&&d.ratio<avgY) cntGreen++;
+    else cntGrey++;
+  });
+  document.getElementById('cnt-star').textContent=cntStar+'間';
+  document.getElementById('cnt-gold').textContent=cntGold+'間';
+  document.getElementById('cnt-green').textContent=cntGreen+'間';
+  document.getElementById('cnt-grey').textContent=cntGrey+'間';
+})();
+
+// ── TABLE
+(function(){
+  const rawData = [
+    { rank:1,  name:"台北微風南山",  tier:"優秀",   ratio:11.73, guests:1262, orders:606446  },
+    { rank:2,  name:"桃園中正",     tier:"優秀",   ratio:11.03, guests:725,  orders:364154  },
+    { rank:3,  name:"新莊迴龍",     tier:"優秀",   ratio:10.83, guests:803,  orders:425839  },
+    { rank:4,  name:"台南誠品生活",  tier:"優秀",   ratio:10.47, guests:812,  orders:410218  },
+    { rank:5,  name:"台中公益",     tier:"優秀",   ratio:9.71,  guests:525,  orders:266720  },
+    { rank:6,  name:"台中太原崇德",  tier:"優秀",   ratio:9.58,  guests:804,  orders:446536  },
+    { rank:7,  name:"高雄夢時代",   tier:"優秀",   ratio:8.47,  guests:1900, orders:900417  },
+    { rank:8,  name:"台中樂業",     tier:"良好",   ratio:7.88,  guests:292,  orders:133726  },
+    { rank:9,  name:"台南正興",     tier:"良好",   ratio:7.68,  guests:560,  orders:296114  },
+    { rank:10, name:"桃園藝文町",   tier:"良好",   ratio:7.26,  guests:1254, orders:634826  },
+    { rank:11, name:"台中廣三SOGO", tier:"良好",   ratio:7.03,  guests:1948, orders:913295  },
+    { rank:12, name:"環球板車",     tier:"良好",   ratio:6.47,  guests:1576, orders:715232  },
+    { rank:13, name:"Bellavita",  tier:"良好",   ratio:6.43,  guests:1151, orders:557280  },
+    { rank:14, name:"台北SOGO復興", tier:"一般",   ratio:5.67,  guests:1904, orders:848515  },
+    { rank:15, name:"台北微風廣場",  tier:"一般",   ratio:5.43,  guests:995,  orders:478853  },
+    { rank:16, name:"高雄義享",     tier:"一般",   ratio:5.40,  guests:1594, orders:711649  },
+    { rank:17, name:"台北誠品松菸",  tier:"一般",   ratio:5.01,  guests:1837, orders:789562  },
+    { rank:18, name:"台中審計",     tier:"一般",   ratio:4.54,  guests:1145, orders:428316  },
+    { rank:19, name:"天母SOGO",    tier:"一般",   ratio:4.21,  guests:1211, orders:458326  },
+    { rank:20, name:"台北西門",     tier:"成長潛力",ratio:2.50,  guests:1082, orders:351117  },
+    { rank:21, name:"台北中山藏藝所",tier:"成長潛力",ratio:2.17,  guests:691,  orders:236321  },
+    { rank:22, name:"台北永康",     tier:"成長潛力",ratio:1.29,  guests:1322, orders:550341  },
+  ];
+  const avgX=1065, avgY=6.54;
+  function getQuadrant(d){
+    if(d.guests>=avgX && d.ratio>=avgY) return {label:'⭐ 明星門市', cls:'quad-star'};
+    if(d.guests< avgX && d.ratio>=avgY) return {label:'🎯 精準推廣', cls:'quad-gold'};
+    if(d.guests>=avgX && d.ratio< avgY) return {label:'🚀 高流量潛力', cls:'quad-green'};
+    return {label:'🌱 成長潛力', cls:'quad-grey'};
+  }
+  let sortCol='rank', sortDir=1, searchQ='';
+  const tbody=document.getElementById('tableBody');
+  const footer=document.getElementById('tableFooter');
+  function render(){
+    let d=[...rawData];
+    if(searchQ) d=d.filter(r=>r.name.includes(searchQ));
+    d.sort((a,b)=>(a[sortCol]<b[sortCol]?-1:1)*sortDir);
+    tbody.innerHTML=d.map(r=>{
+      const q=getQuadrant(r);
+      return `<tr>
+        <td style="font-weight:700;color:var(--ink-soft);text-align:center;">${r.rank}</td>
+        <td style="font-weight:600;">${r.name}</td>
+        <td><span class="tier-badge tier-${r.tier}">${r.tier}</span></td>
+        <td><span class="tier-badge ${q.cls}">${q.label}</span></td>
+        <td style="font-weight:700;color:${r.ratio>=8?'#E8526A':r.ratio>=6?'#3A7D6E':r.ratio>=4?'#C8902A':'#8A8AAA'}">${r.ratio}%</td>
+        <td>${r.guests.toLocaleString()}</td>
+        <td>$${r.orders.toLocaleString()}</td>
+      </tr>`;
+    }).join('');
+    footer.textContent=`顯示 ${d.length} / ${rawData.length} 筆`;
+  }
+  render();
+  document.querySelectorAll('#dataTable th').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const col=th.dataset.col;
+      if(sortCol===col) sortDir*=-1; else { sortCol=col; sortDir=1; }
+      document.querySelectorAll('#dataTable th').forEach(h=>h.classList.remove('sort-asc','sort-desc'));
+      th.classList.add(sortDir===1?'sort-asc':'sort-desc');
+      render();
+    });
+  });
+  document.getElementById('searchBox').addEventListener('input', e=>{
+    searchQ=e.target.value.trim(); render();
+  });
+  document.getElementById('searchBox').addEventListener('focus', e=>{ e.target.style.borderColor='var(--rose)'; });
+  document.getElementById('searchBox').addEventListener('blur',  e=>{ e.target.style.borderColor='var(--border)'; });
+})();
+
+// ── KPI COUNTER ANIMATION
+(function(){
+  const counters=document.querySelectorAll('.counter');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      const el=entry.target;
+      const target=parseFloat(el.dataset.target);
+      const suffix=el.dataset.suffix||'';
+      const isFloat=target%1!==0;
+      const dur=1200, step=16;
+      let cur=0, elapsed=0;
+      const timer=setInterval(()=>{
+        elapsed+=step;
+        const progress=Math.min(elapsed/dur,1);
+        const ease=1-Math.pow(1-progress,3);
+        cur=target*ease;
+        el.textContent=(isFloat?cur.toFixed(2):Math.round(cur))+suffix;
+        if(progress>=1){ el.textContent=(isFloat?target.toFixed(2):target)+suffix; clearInterval(timer); }
+      },step);
+      observer.unobserve(el);
+    });
+  },{threshold:0.5});
+  counters.forEach(el=>observer.observe(el));
+})();
+
+// ── STICKY NAV active state
+(function(){
+  const sections=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('.sticky-nav a');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const active=document.querySelector(`.sticky-nav a[href="#${e.target.id}"]`);
+        if(active) active.classList.add('active');
+      }
+    });
+  },{threshold:0.4});
+  sections.forEach(s=>observer.observe(s));
+})();
+</script>
+</body>
+</html>
