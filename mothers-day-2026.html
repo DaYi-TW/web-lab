@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026 母親節檔期效益分析</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{
+  --bg:#fafaf7;
+  --surface:#ffffff;
+  --surface-2:#f3f1ea;
+  --text:#1a1a1a;
+  --text-2:#5f5e5a;
+  --text-3:#9a988f;
+  --border:rgba(0,0,0,0.1);
+  --blue:#378ADD;
+  --green:#1D9E75;
+  --red:#D85A30;
+  --radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding:40px 20px;
+  line-height:1.5;
+}
+.container{max-width:880px;margin:0 auto}
+.head{margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.h-title{font-size:22px;font-weight:500}
+.h-sub{font-size:13px;color:var(--text-2);margin-top:6px}
+.sec{font-size:11px;font-weight:500;letter-spacing:.07em;color:var(--text-3);text-transform:uppercase;margin-bottom:10px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.8rem}
+.kpi{background:var(--surface-2);border-radius:8px;padding:14px 16px}
+.kl{font-size:12px;color:var(--text-2);margin-bottom:5px}
+.kv{font-size:22px;font-weight:500}
+.kd{font-size:12px;margin-top:4px;color:var(--green)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.8rem}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:1.8rem}
+.ins-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ins-list li{font-size:13px;color:var(--text-2);line-height:1.65;padding-left:14px;position:relative}
+.ins-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.ins-list li strong{color:var(--text);font-weight:500}
+.legend{display:flex;gap:16px;margin-bottom:8px;font-size:12px;color:var(--text-2)}
+.lsq{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+.rt{width:100%;border-collapse:collapse;font-size:13px}
+.rt th{font-size:11px;font-weight:500;color:var(--text-3);text-align:left;padding:0 0 8px;border-bottom:1px solid var(--border)}
+.rt th.r,.rt td.r{text-align:right}
+.rt td{padding:7px 0;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:middle}
+.rt tr:last-child td{border-bottom:none}
+.sn{color:var(--text);font-weight:500;font-size:13px}
+.tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:6px;margin-left:4px}
+.td-tag{background:#E6F1FB;color:#0C447C}
+.tf-tag{background:#EAF3DE;color:#27500A}
+.avg-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.avg-stat .kpi .kv{font-size:18px}
+.quad{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.qbox{padding:12px 14px;border-radius:8px}
+.qbox h4{font-size:12px;font-weight:500;margin-bottom:6px}
+.qbox p{font-size:12px;line-height:1.55}
+.qbox.green{background:#EAF3DE}.qbox.green h4{color:#27500A}.qbox.green p{color:#3B6D11}
+.qbox.blue{background:#E6F1FB}.qbox.blue h4{color:#0C447C}.qbox.blue p{color:#185FA5}
+.qbox.amber{background:#FAEEDA}.qbox.amber h4{color:#633806}.qbox.amber p{color:#854F0B}
+.qbox.red{background:#FCEBEB}.qbox.red h4{color:#791F1F}.qbox.red p{color:#A32D2D}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="head">
+    <div class="h-title">2026 母親節檔期效益分析</div>
+    <div class="h-sub">活動期間：2026.05.01–05.10　|　對比基準：2025.05.05–05.11（去年同期母檔）</div>
+  </div>
+
+  <div class="sec">活動整體成效</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kl">銷售總額</div>
+      <div class="kv">1,152 萬</div>
+      <div class="kd">vs 去年 465 萬　+148%</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">總來客數</div>
+      <div class="kv">25,393</div>
+      <div class="kd">vs 去年 10,470　+142%</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">平均客單價</div>
+      <div class="kv">454 元</div>
+      <div class="kd">vs 去年 444 元　+10 元</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">套餐帶客比</div>
+      <div class="kv">6.54%</div>
+      <div class="kd">vs 去年 3.62%　+2.92 百分點</div>
+    </div>
+  </div>
+
+  <div class="sec">門市銷售額排名</div>
+  <div class="card">
+    <div class="legend">
+      <span><span class="lsq" style="background:#378ADD"></span>直營（15店）</span>
+      <span><span class="lsq" style="background:#1D9E75"></span>加盟（6店）</span>
+    </div>
+    <div style="position:relative;width:100%;height:680px">
+      <canvas id="salesChart"></canvas>
+    </div>
+  </div>
+
+  <div class="sec">客單價深度分析</div>
+  <div class="avg-stat">
+    <div class="kpi">
+      <div class="kl">最高客單</div>
+      <div class="kv">555 元</div>
+      <div class="kd" style="color:var(--text-3)">台中太原崇德</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">最低客單</div>
+      <div class="kv">325 元</div>
+      <div class="kd" style="color:var(--text-3)">台北西門</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">客單級距</div>
+      <div class="kv">230 元</div>
+      <div class="kd" style="color:var(--text-3)">高低門市差距 71%</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="legend">
+      <span><span class="lsq" style="background:#378ADD"></span>直營</span>
+      <span><span class="lsq" style="background:#1D9E75"></span>加盟</span>
+      <span style="margin-left:auto;color:var(--text-3)">虛線：整體平均 454 元</span>
+    </div>
+    <div style="position:relative;width:100%;height:680px">
+      <canvas id="avgChart"></canvas>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="card" style="margin-bottom:0">
+      <div class="sec">客單價成長 Top 5</div>
+      <table class="rt">
+        <thead><tr><th>排名</th><th>門市</th><th class="r">去年→今年</th><th class="r">成長</th></tr></thead>
+        <tbody id="topAvg"></tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="sec">客單價衰退 Bottom 5</div>
+      <table class="rt">
+        <thead><tr><th>排名</th><th>門市</th><th class="r">去年→今年</th><th class="r">成長</th></tr></thead>
+        <tbody id="botAvg"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:1.5rem">客單 × 套餐比 四象限</div>
+  <div class="card">
+    <div class="legend">
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#378ADD;margin-right:4px;vertical-align:middle"></span>直營</span>
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1D9E75;margin-right:4px;vertical-align:middle"></span>加盟</span>
+      <span style="margin-left:auto;color:var(--text-3)">虛線：客單 454 元 / 套餐比 6.54%</span>
+    </div>
+    <div style="position:relative;width:100%;height:340px">
+      <canvas id="scatterChart"></canvas>
+    </div>
+    <div class="quad">
+      <div class="qbox green">
+        <h4>① 高單高套餐比：模範門市（11 家）</h4>
+        <p>台中太原崇德、新莊迴龍、台南正興、台中公益、桃園藝文町、台南誠品生活、桃園中正、台北微風南山、高雄夢時代、台中廣三SOGO、台中樂業。執行與消費力俱佳。</p>
+      </div>
+      <div class="qbox blue">
+        <h4>② 高單低套餐比：客層佳但推廣弱（3 家）</h4>
+        <p>Bellavita信義、台北微風廣場、環球板車。客群消費力強但套餐推廣有成長空間。</p>
+      </div>
+      <div class="qbox amber">
+        <h4>③ 低單高套餐比（0 家）</h4>
+        <p>無門市落在此象限，顯示客單偏低的門市套餐推廣力也偏弱，兩指標高度連動。</p>
+      </div>
+      <div class="qbox red">
+        <h4>④ 低單低套餐比：加油門市（8 家）</h4>
+        <p>台北西門、台北中山藏藝所、台中審計、天母SOGO、台北永康。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">核心洞察</div>
+  <div class="card" style="margin-bottom:0">
+    <ul class="ins-list">
+      <li><strong>活動規模躍升 2.5 倍</strong>：銷售額由 465 萬翻倍至 1,152 萬，套餐帶客比從 3.62% 提升到 6.54%，今年活動設計顯著有效。</li>
+      <li><strong>高客單門市集中於兩類</strong>：第一類為定餐型商圈（台中太原崇德、台南正興、新莊迴龍）；第二類為精品百貨（Bellavita 信義、桃園藝文町、台北微風南山）。共通點為「目的性消費」而非順路客為主。</li>
+      <li><strong>加盟店瓶頸在客流量而非執行力</strong>：加盟平均套餐比 7.4% 反高於直營 6.6%，但平均來客僅直營 58%。</li>
+    </ul>
+  </div>
+
+</div>
+<script>
+const tc='rgba(0,0,0,0.45)';
+const gc='rgba(0,0,0,0.06)';
+const BLUE='#378ADD';
+const GREEN='#1D9E75';
+
+const stores=[
+  {n:'台中廣三SOGO',t:'直營',sales:913295,avg:469,ratio:7.03},
+  {n:'高雄夢時代',t:'直營',sales:900417,avg:474,ratio:8.47},
+  {n:'台北SOGO復興',t:'直營',sales:848515,avg:446,ratio:5.67},
+  {n:'台北誠品松菸',t:'直營',sales:789562,avg:430,ratio:5.01},
+  {n:'環球板車',t:'直營',sales:715232,avg:454,ratio:6.47},
+  {n:'高雄義享',t:'直營',sales:711649,avg:446,ratio:5.40},
+  {n:'桃園藝文町',t:'直營',sales:634826,avg:506,ratio:7.26},
+  {n:'台北微風南山',t:'直營',sales:606446,avg:481,ratio:11.73},
+  {n:'Bellavita信義',t:'直營',sales:557280,avg:484,ratio:6.43},
+  {n:'台北永康',t:'直營',sales:550341,avg:416,ratio:1.29},
+  {n:'台北微風廣場',t:'直營',sales:478853,avg:481,ratio:5.43},
+  {n:'天母SOGO',t:'直營',sales:458326,avg:378,ratio:4.21},
+  {n:'台中太原崇德',t:'直營',sales:446536,avg:555,ratio:9.58},
+  {n:'台中審計',t:'直營',sales:428316,avg:374,ratio:4.54},
+  {n:'新莊迴龍',t:'加盟',sales:425839,avg:530,ratio:10.83},
+  {n:'台南誠品生活',t:'直營',sales:410218,avg:505,ratio:10.47},
+  {n:'桃園中正',t:'加盟',sales:364154,avg:502,ratio:11.03},
+  {n:'台北西門',t:'加盟',sales:351117,avg:325,ratio:2.50},
+  {n:'台南正興',t:'直營',sales:296114,avg:529,ratio:7.68},
+  {n:'台中公益',t:'加盟',sales:266720,avg:508,ratio:9.71},
+  {n:'台北中山藏藝所',t:'加盟',sales:236321,avg:342,ratio:2.17},
+  {n:'台中樂業',t:'加盟',sales:133726,avg:458,ratio:7.88},
+];
+
+new Chart(document.getElementById('salesChart'),{
+  type:'bar',
+  data:{labels:stores.map(s=>s.n),datasets:[{data:stores.map(s=>s.sales),backgroundColor:stores.map(s=>s.t==='直營'?BLUE:GREEN),borderRadius:3,barThickness:22}]},
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' $'+Math.round(ctx.parsed.x).toLocaleString()}}},
+    scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>'$'+(v/1000).toFixed(0)+'K'}},y:{grid:{display:false},ticks:{color:tc,font:{size:12}}}}
+  }
+});
+
+const avgSorted=[...stores].sort((a,b)=>b.avg-a.avg);
+new Chart(document.getElementById('avgChart'),{
+  type:'bar',
+  data:{labels:avgSorted.map(s=>s.n),datasets:[{data:avgSorted.map(s=>s.avg),backgroundColor:avgSorted.map(s=>s.t==='直營'?BLUE:GREEN),borderRadius:3,barThickness:22}]},
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.x+' 元'}}},
+    scales:{x:{min:280,grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v+'元'}},y:{grid:{display:false},ticks:{color:tc,font:{size:12}}}}
+  },
+  plugins:[{id:'avgLine',afterDraw:(chart)=>{
+    const {ctx,chartArea:{top,bottom},scales:{x}}=chart;
+    ctx.save();ctx.strokeStyle=tc;ctx.setLineDash([4,4]);ctx.lineWidth=1;
+    const xPos=x.getPixelForValue(454);
+    ctx.beginPath();ctx.moveTo(xPos,top);ctx.lineTo(xPos,bottom);ctx.stroke();ctx.restore();
+  }}]
+});
+
+const avgGrowth=[
+  {n:'台南正興',t:'直營',old:365,avg:529},
+  {n:'新莊迴龍',t:'加盟',old:443,avg:530},
+  {n:'台北永康',t:'直營',old:359,avg:416},
+  {n:'Bellavita信義',t:'直營',old:427,avg:484},
+  {n:'高雄義享',t:'直營',old:416,avg:446},
+  {n:'桃園中正',t:'加盟',old:478,avg:502},
+  {n:'台中樂業',t:'加盟',old:442,avg:458},
+  {n:'環球板車',t:'直營',old:439,avg:454},
+  {n:'台北SOGO復興',t:'直營',old:439,avg:446},
+  {n:'台北誠品松菸',t:'直營',old:424,avg:430},
+  {n:'天母SOGO',t:'直營',old:379,avg:378},
+  {n:'台中太原崇德',t:'直營',old:561,avg:555},
+  {n:'桃園藝文町',t:'直營',old:541,avg:506},
+  {n:'台中審計',t:'直營',old:405,avg:374},
+  {n:'台北微風廣場',t:'直營',old:589,avg:481},
+  {n:'台北西門',t:'加盟',old:418,avg:325},
+].map(s=>({...s,pct:((s.avg-s.old)/s.old*100)}));
+
+const top5=avgGrowth.sort((a,b)=>b.pct-a.pct).slice(0,5);
+const bot5=[...avgGrowth].sort((a,b)=>a.pct-b.pct).slice(0,5);
+document.getElementById('topAvg').innerHTML=top5.map((s,i)=>`<tr><td style="font-size:13px;color:#1D9E75;font-weight:500;width:30px">${i+1}</td><td class="sn">${s.n}<span class="tag ${s.t==='直營'?'td-tag':'tf-tag'}">${s.t}</span></td><td class="r" style="font-size:13px;color:var(--text-2)">${s.old}→${s.avg} 元</td><td class="r sn" style="color:#1D9E75">+${s.pct.toFixed(1)}%</td></tr>`).join('');
+document.getElementById('botAvg').innerHTML=bot5.map((s,i)=>`<tr><td style="font-size:13px;color:#D85A30;font-weight:500;width:30px">${i+1}</td><td class="sn">${s.n}<span class="tag ${s.t==='直營'?'td-tag':'tf-tag'}">${s.t}</span></td><td class="r" style="font-size:13px;color:var(--text-2)">${s.old}→${s.avg} 元</td><td class="r sn" style="color:#D85A30">${s.pct.toFixed(1)}%</td></tr>`).join('');
+
+const scatterDirect=stores.filter(s=>s.t==='直營').map(s=>({x:s.ratio,y:s.avg,label:s.n}));
+const scatterFran=stores.filter(s=>s.t==='加盟').map(s=>({x:s.ratio,y:s.avg,label:s.n}));
+new Chart(document.getElementById('scatterChart'),{
+  type:'scatter',
+  data:{datasets:[
+    {label:'直營',data:scatterDirect,backgroundColor:BLUE+'cc',pointRadius:6,pointHoverRadius:9},
+    {label:'加盟',data:scatterFran,backgroundColor:GREEN+'cc',pointRadius:6,pointHoverRadius:9}
+  ]},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=ctx.raw;return d.label+': 套餐比 '+d.x+'% | 客單 '+d.y+'元'}}}},
+    scales:{
+      x:{min:0,max:13,title:{display:true,text:'套餐帶客比（%）',color:tc,font:{size:11}},grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v+'%'}},
+      y:{min:300,max:600,title:{display:true,text:'客單價（元）',color:tc,font:{size:11}},grid:{color:gc},ticks:{color:tc,font:{size:11}}}
+    }
+  },
+  plugins:[{id:'avgLines',afterDraw:(chart)=>{
+    const {ctx,chartArea:{left,right,top,bottom},scales:{x,y}}=chart;
+    ctx.save();ctx.strokeStyle=tc;ctx.setLineDash([4,4]);ctx.lineWidth=1;
+    const xPos=x.getPixelForValue(6.54);
+    ctx.beginPath();ctx.moveTo(xPos,top);ctx.lineTo(xPos,bottom);ctx.stroke();
+    const yPos=y.getPixelForValue(454);
+    ctx.beginPath();ctx.moveTo(left,yPos);ctx.lineTo(right,yPos);ctx.stroke();
+    ctx.restore();
+  }}]
+});
+</script>
+</body>
+</html>
